@@ -9,6 +9,11 @@ goscango is a simple port scanning tool written in Go that performs TCP port sca
 ## Installation
 It is recommended to download pre-compiled binaries for amd64 Linux/Windows and arm64 Darwin from the [latest releases](https://github.com/thetonyharkness/goscango/releases)
 
+### Install From Source
+```bash
+$ go get github.com/thetonyharkness/goscango
+```
+
 ## Usage
 To use goscango, you can run it from the command line with the following options:
 
