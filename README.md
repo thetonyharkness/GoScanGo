@@ -1,4 +1,4 @@
-# goscango
+# GoScanGo
 goscango is a simple port scanning tool written in Go that performs TCP port scans on specified targets and generates a report of open ports. It utilizes the net package for basic port scanning and the os/exec package to run Nmap for detailed port analysis.
 
 ## Features
