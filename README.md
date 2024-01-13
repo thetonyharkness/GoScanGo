@@ -15,18 +15,42 @@ $ go get github.com/thetonyharkness/goscango
 ```
 
 ## Usage
+```text
+$ ./goscango -h
+
+
+  _____       _____                  _____
+ / ____|     / ____|                / ____|
+| |  __  ___| (___   ___ __ _ _ __ | |  __  ___
+| | |_ |/ _ \\___ \ / __/ _\ | '_ \| | |_ |/ _ \
+| |__| | (_) |___) | (_| (_| | | | | |__| | (_) |
+ \_____|\___/_____/ \___\__,_|_| |_|\_____|\___/
+
+
+
+Usage:
+$ goscango [OPTIONS] targets
+
+Options:
+-h             Print usage information
+-o <filename>  Output file
+-p             Ports to scan (comma-separated or range)
+-t             File containing targets
+--timeout      Timeout in milliseconds (default: 1500)
+-V             Print version information
+
+
+Examples:
+goscango 10.10.10.100
+goscango -p 80,443,8080 10.10.10.100
+goscango -o results.txt -p 1-1024 10.10.10.100
+```
+
 To use goscango, you can run it from the command line with the following options:
 
 ```bash
 $ go run goscango.go [OPTIONS] targets
 ```
-## Options
-- -t: File containing targets.
-- -o: Output file for scan results.
-- --timeout: Timeout in milliseconds (default: 1500).
-- -p: Ports to scan (comma-separated or range).
-- -V: Print version information.
-- -h: Print usage information.
 
 ## Examples
 ### Scan all ports for a single target
