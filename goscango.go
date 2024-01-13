@@ -14,6 +14,19 @@ import (
 )
 
 func main() {
+	// Create and print banner
+	banner := `
+
+  _____       _____                  _____       
+ / ____|     / ____|                / ____|      
+| |  __  ___| (___   ___ __ _ _ __ | |  __  ___  
+| | |_ |/ _ \\___ \ / __/ _\ | '_ \| | |_ |/ _ \ 
+| |__| | (_) |___) | (_| (_| | | | | |__| | (_) |
+ \_____|\___/_____/ \___\__,_|_| |_|\_____|\___/ 	
+
+`
+	fmt.Println(banner)
+
 	// Define command-line flags
 	targetsFile := flag.String("t", "", "File containing targets")
 	outputFile := flag.String("o", "", "Output file")
