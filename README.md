@@ -48,4 +48,4 @@ $ go run goscan.go -t targets.txt
 ```
 
 ## License
-This project is licensed under the GNU Public License - see the LICENSE file for details.
+This project is licensed under the GNU General Public License - see the LICENSE file for details.
