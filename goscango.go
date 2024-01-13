@@ -44,7 +44,7 @@ func main() {
 	}
 
 	if *version {
-		fmt.Println("goscango version 1.0")
+		fmt.Println("goscango version 0.1")
 		return
 	}
 
