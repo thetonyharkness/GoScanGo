@@ -73,5 +73,10 @@ $ go run goscango.go -p 1-1024 192.168.1.1
 $ go run goscan.go -t targets.txt
 ```
 
+## To-Do
+- Colorize output
+- Improve speed and efficiency
+- UDP support?
+
 ## License
 This project is licensed under the GNU General Public License - see the LICENSE file for details.
