@@ -32,6 +32,7 @@ func main() {
 	outputFile := flag.String("o", "", "Output file")
 	timeout := flag.Int("timeout", 1500, "Timeout in milliseconds")
 	portsArg := flag.String("p", "", "Ports to scan (comma-separated or range)")
+	nmapArgs := flag.String("A", "", "Additional arguments for Nmap scan")
 	version := flag.Bool("V", false, "Print version information")
 	help := flag.Bool("h", false, "Print usage information")
 
@@ -88,7 +89,7 @@ func main() {
 		wg.Add(1)
 		go func(target string) {
 			defer wg.Done()
-			scanTarget(target, *timeout, *outputFile, *portsArg)
+			scanTarget(target, *timeout, *outputFile, *portsArg, *nmapArgs)
 		}(target)
 	}
 	wg.Wait()
@@ -96,7 +97,7 @@ func main() {
 	fmt.Println("Scan complete")
 }
 
-func scanTarget(target string, timeout int, outputFile, portsArg string) {
+func scanTarget(target string, timeout int, outputFile, portsArg, nmapArgs string) {
 	// Split target into IP and port range
 	parts := strings.Split(target, ":")
 	ip := parts[0]
@@ -113,8 +114,8 @@ func scanTarget(target string, timeout int, outputFile, portsArg string) {
 	// Perform port scan
 	openPorts := scanPorts(ip, ports, timeout)
 
-	// Run Nmap on open ports
-	nmapOutput := runNmap(ip, openPorts)
+	// Run Nmap on open ports with additional arguments
+	nmapOutput := runNmap(ip, openPorts, nmapArgs)
 
 	// Write results to the specified output file
 	if outputFile != "" {
@@ -167,16 +168,23 @@ func isOpen(target string, timeout time.Duration) bool {
 	return true
 }
 
-func runNmap(ip string, openPorts []string) string {
+func runNmap(ip string, openPorts []string, nmapArgs string) string {
 	if len(openPorts) == 0 {
 		fmt.Printf("No open ports found for %s\n", ip)
 		return ""
 	}
 
-	fmt.Printf("Running Nmap for %s on ports %s\n", ip, strings.Join(openPorts, ","))
+	fmt.Printf("Running Nmap for %s on ports %s with additional args: %s\n", ip, strings.Join(openPorts, ","), nmapArgs)
+
+	// Build Nmap command with additional arguments
+	nmapCmd := []string{"-Pn", "-vvv", "-p", strings.Join(openPorts, ",")}
+	if nmapArgs != "" {
+		nmapCmd = append(nmapCmd, strings.Split(nmapArgs, " ")...)
+	}
+	nmapCmd = append(nmapCmd, ip)
 
 	// Run Nmap command
-	cmd := exec.Command("nmap", "-Pn", "-vvv", "-p", strings.Join(openPorts, ","), ip)
+	cmd := exec.Command("nmap", nmapCmd...)
 	stdout, err := cmd.Output()
 	if err != nil {
 		fmt.Println("Error running Nmap command:", err)
@@ -226,11 +234,13 @@ Options:
 -t             File containing targets
 --timeout      Timeout in milliseconds (default: 1500)
 -V             Print version information
+-A             Additional arguments for Nmap scan
 
 
 Examples:
 goscango 10.10.10.100
 goscango -p 80,443,8080 10.10.10.100
 goscango -o results.txt -p 1-1024 10.10.10.100
+goscango -A '-sV -sC' 10.10.10.100
 `)
 }
