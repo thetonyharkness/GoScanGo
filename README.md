@@ -51,26 +51,26 @@ goscango -A '-sV -sC' 10.10.10.100
 To use goscango, you can run it from the command line with the following options:
 
 ```bash
-$ go run goscango.go [OPTIONS] targets
+$ ./goscango [OPTIONS] targets
 ```
 
 ## Examples
 ### Scan all ports for a single target
 ```bash
-$ go run goscango.go 192.168.1.1
+$ ./goscango 192.168.1.1
 ```
 ### Scan specific ports for a single target
 ```bash
-$ go run goscango.go -p 80,443,8080 192.168.1.1
+$ ./goscango -p 80,443,8080 192.168.1.1
 ```
 
 ### Scan a range of ports for a single target
 ```bash
-$ go run goscango.go -p 1-1024 192.168.1.1
+$ ./goscango -p 1-1024 192.168.1.1
 ```
 ### Scan all ports for multiple targets
 ```bash
-$ go run goscan.go -t targets.txt
+$ ./goscango -t targets.txt
 ```
 
 ## To-Do
