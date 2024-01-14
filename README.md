@@ -11,7 +11,7 @@ It is recommended to download pre-compiled binaries for amd64 Linux/Windows and 
 
 ### Install From Source
 ```bash
-$ go get github.com/thetonyharkness/goscango
+$ go install github.com/thetonyharkness/goscango@latest
 ```
 
 ## Usage
