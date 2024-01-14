@@ -32,6 +32,7 @@ Usage:
 $ goscango [OPTIONS] targets
 
 Options:
+-A             Additional arguments for Nmap scan
 -h             Print usage information
 -o <filename>  Output file
 -p             Ports to scan (comma-separated or range)
@@ -44,6 +45,7 @@ Examples:
 goscango 10.10.10.100
 goscango -p 80,443,8080 10.10.10.100
 goscango -o results.txt -p 1-1024 10.10.10.100
+goscango -A '-sV -sC' 10.10.10.100
 ```
 
 To use goscango, you can run it from the command line with the following options:
