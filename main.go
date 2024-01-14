@@ -228,13 +228,13 @@ Usage:
 goscango [OPTIONS] targets
 
 Options:
+-A             Additional arguments for Nmap scan
 -h             Print usage information
 -o <filename>  Output file
 -p             Ports to scan (comma-separated or range)
 -t             File containing targets
 --timeout      Timeout in milliseconds (default: 1500)
 -V             Print version information
--A             Additional arguments for Nmap scan
 
 
 Examples:
